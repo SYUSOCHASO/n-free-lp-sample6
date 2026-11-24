@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N-Free 記帳代行サービス</title>
+<link rel="icon" href="image/favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-receipt" viewBox="0 0 48 48"><path d="M12 6h24v36l-4-3-4 3-4-3-4 3-4-3-4 3z"/><path d="M17 15h14M17 21h14M17 27h8M27 27h4M17 33h8M27 33h4"/></symbol>
+    <symbol id="i-tags" viewBox="0 0 48 48"><rect x="6" y="9" width="36" height="8" rx="2"/><rect x="6" y="20" width="36" height="8" rx="2"/><rect x="6" y="31" width="36" height="8" rx="2"/><path d="M11 13h6M11 24h6M11 35h6"/></symbol>
+    <symbol id="i-docs" viewBox="0 0 48 48"><path d="M14 10h16l8 8v24H14z"/><path d="M30 10v8h8"/><path d="M10 14v32h22"/><path d="M19 26h14M19 31h14M19 36h9"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 48 48"><path d="M14 33V22a10 10 0 0 1 20 0v11l3 4H11z"/><path d="M20 40a4 4 0 0 0 8 0"/><path d="M24 8v4"/></symbol>
+    <symbol id="i-q" viewBox="0 0 48 48"><circle cx="24" cy="24" r="17"/><path d="M19 19a5 5 0 1 1 7 4.6c-1.3.6-2 1.6-2 3V28"/><path d="M24 33v1"/></symbol>
+    <symbol id="i-box" viewBox="0 0 48 48"><path d="M8 16l16-8 16 8v18l-16 8-16-8z"/><path d="M8 16l16 8 16-8M24 24v18"/></symbol>
+    <symbol id="i-calc" viewBox="0 0 48 48"><rect x="11" y="6" width="26" height="36" rx="3"/><rect x="16" y="11" width="16" height="7"/><path d="M17 25h2M23 25h2M29 25h2M17 31h2M23 31h2M29 31h2M17 37h2M23 37h2M29 37h2"/></symbol>
+    <symbol id="i-office" viewBox="0 0 48 48"><path d="M8 42h32M12 42V18h24v24M10 18l14-10 14 10"/><path d="M18 24v12M24 24v12M30 24v12"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 48 48"><path d="M8 10h32v22H20l-8 7v-7H8z"/><path d="M15 19h18M15 25h11"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 48 48"><rect x="7" y="10" width="34" height="30" rx="3"/><path d="M7 19h34M16 6v8M32 6v8M14 26h4M22 26h4M30 26h4M14 33h4M22 33h4"/></symbol>
+    <symbol id="i-doc-yen" viewBox="0 0 48 48"><path d="M12 6h18l8 8v28H12z"/><path d="M30 6v8h8"/><path d="M19 20l5 7 5-7M24 27v9M19 30h10"/></symbol>
+  </defs>
+</svg>
+
+<header class="hd">
+  <div class="hd__in">
+    <a href="index.html" class="hd__logo"><img src="image/logo-tight.png" alt="N-Free"></a>
+    <nav class="hd__nav" aria-label="メインメニュー">
+      <a href="index.html#sec03">N-Freeの特徴</a>
+      <a href="index.html#sec08">導入までの流れ</a>
+      <a href="index.html#sec07">料金プラン</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+    <div class="hd__act">
+      <a href="https://app.n-free.jp" target="_blank" rel="noopener" class="hd__login">ログイン</a>
+      <a href="https://app.n-free.jp/signup" target="_blank" rel="noopener" class="btn btn--sm">申し込む</a>
+    </div>
+    <button class="hd__burger" type="button" aria-expanded="false" aria-controls="spnav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="spnav" id="spnav" aria-label="メニュー">
+    <a href="index.html#sec03">N-Freeの特徴</a>
+    <a href="index.html#sec08">導入までの流れ</a>
+    <a href="index.html#sec07">料金プラン</a>
+    <a href="contact.html">お問い合わせ</a>
+    <a href="https://app.n-free.jp" target="_blank" rel="noopener">ログイン</a>
+    <a href="https://app.n-free.jp/signup" target="_blank" rel="noopener" class="btn">申し込む</a>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="sec01">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <a href="https://app.n-free.jp/signup" target="_blank" rel="noopener" class="hero__promo">
+          <span class="hero__promo-badge"><strong>1週間 完全無料</strong>で体験できます</span>
+          <span class="hero__promo-sub">フリーランス・個人事業主向け 記帳代行</span>
+        </a>
+        <p class="hero__eyebrow">フリーランス・個人事業主・<em>確定申告が初めての方</em>へ</p>
+        <h1 class="hero__title">確定申告を、<br><span>もっと簡単に。</span></h1>
+        <p class="hero__lead">領収書を撮るだけで、<strong>AIが自動で記帳</strong>。<br>確定申告に必要な書類まで、もっとスムーズに。</p>
+        <a href="https://app.n-free.jp/signup" target="_blank" rel="noopener" class="btn btn--lg"><span class="btn__tag">期間限定</span>1週間無料で試す<svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5l5 5-5 5" stroke="currentColor" stroke-width="2" fill="none"/></svg></a>
+        <ul class="hero__meta">
+          <li><strong>月額 <span class="count" data-to="1980">1,980</span>円</strong>〜</li>
+          <li>1週間の無料体験</li>
+          <li>最短3分で利用開始</li>
+        </ul>
+      </div>
+      <div class="hero__diagram" aria-hidden="true">
+        <svg class="dg" viewBox="0 0 640 500">
+          <defs><clipPath id="scr"><rect x="241" y="96" width="158" height="309" rx="18"/></clipPath></defs>
+          <g class="dg__lines">
+            <path id="p1" d="M132 116 H232" pathLength="1"/>
+            <path id="p2" d="M408 116 H508" pathLength="1"/>
+            <path id="p3" d="M554 162 V338" pathLength="1"/>
+            <path id="p4" d="M508 384 H408" pathLength="1"/>
+            <path id="p5" d="M232 384 H132" pathLength="1"/>
+          </g>
+          <g class="dg__dots">
+            <circle r="4"><animateMotion dur="1.6s" repeatCount="indefinite" begin="1.6s"><mpath href="#p1"/></animateMotion></circle>
+            <circle r="4"><animateMotion dur="1.6s" repeatCount="indefinite" begin="2s"><mpath href="#p2"/></animateMotion></circle>
+            <circle r="4"><animateMotion dur="2.2s" repeatCount="indefinite" begin="2.4s"><mpath href="#p3"/></animateMotion></circle>
+            <circle r="4"><animateMotion dur="1.6s" repeatCount="indefinite" begin="2.8s"><mpath href="#p4"/></animateMotion></circle>
+            <circle r="4"><animateMotion dur="1.6s" repeatCount="indefinite" begin="3.2s"><mpath href="#p5"/></animateMotion></circle>
+          </g>
+          <g class="dg__phone">
+            <rect x="232" y="87" width="176" height="327" rx="26" class="frame"/>
+            <image href="image/app-screen-home.png" x="241" y="96" width="158" height="309" preserveAspectRatio="xMidYMin slice" clip-path="url(#scr)"/>
+          </g>
+          <g class="dg__node n1"><rect x="40" y="70" width="92" height="92" rx="16"/><use href="#i-receipt" x="62" y="92" width="48" height="48"/></g>
+          <g class="dg__node n2"><rect x="508" y="70" width="92" height="92" rx="16"/><use href="#i-tags" x="530" y="92" width="48" height="48"/></g>
+          <g class="dg__node n3"><rect x="508" y="338" width="92" height="92" rx="16"/><use href="#i-docs" x="530" y="360" width="48" height="48"/></g>
+          <g class="dg__node n4 is-key"><rect x="40" y="338" width="92" height="92" rx="16"/><use href="#i-bell" x="62" y="360" width="48" height="48"/></g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMS -->
+  <section class="sec" id="sec02">
+    <div class="wrap">
+      <h2 class="h2 rv">確定申告に関する<span class="hl">お悩み</span></h2>
+      <div class="cards4">
+        <a class="pc rv" href="index.html#sec04">
+          <svg class="ic"><use href="#i-q"/></svg>
+          <h3>確定申告は必ず<br>やらないといけないの？</h3>
+          <p>初めての確定申告だから自分で申告をするのは面倒だし、やり方もわからない。</p>
+        </a>
+        <a class="pc rv" href="index.html#sec06">
+          <svg class="ic"><use href="#i-box"/></svg>
+          <h3>確定申告に<br>必要なモノって何？</h3>
+          <p>確定申告はやらなければならないと分かっていても、何を準備したらいいか分からない。</p>
+        </a>
+        <a class="pc rv" href="index.html#sec05">
+          <svg class="ic"><use href="#i-calc"/></svg>
+          <h3>控除や経費を<br>正しく申告できるか不安</h3>
+          <p>医療費控除や扶養控除、青色申告特別控除などを適用できる場合があるが、自分がどの控除を受けられるのか分からない。</p>
+        </a>
+        <a class="pc rv" href="index.html#sec07">
+          <svg class="ic"><use href="#i-office"/></svg>
+          <h3>税務署から<br>指摘を受けるのが怖い</h3>
+          <p>確定申告後に税務署から問い合わせや調査が入ると、何か間違っていたのではないかと不安を感じる。</p>
+        </a>
+      </div>
+      <div class="converge rv" aria-hidden="true">
+        <svg viewBox="0 0 1000 120" preserveAspectRatio="none"><path d="M125 0 C125 60 500 40 500 120" pathLength="1"/><path d="M375 0 C375 60 500 60 500 120" pathLength="1"/><path d="M625 0 C625 60 500 60 500 120" pathLength="1"/><path d="M875 0 C875 60 500 40 500 120" pathLength="1"/></svg>
+      </div>
+      <div class="solve rv">
+        <p class="solve__l1">これらの悩みや面倒な申告手続きまで丸ごと全て</p>
+        <p class="solve__l2"><img src="image/logo-tight.png" alt="N-Free">が解決いたします！！</p>
+        <p class="solve__note">※難しい基礎知識も覚える必要はありません。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES pipeline -->
+  <section class="sec sec--gray" id="sec03">
+    <div class="wrap">
+      <h2 class="h2 h2--logo rv"><img src="image/logo-tight.png" alt="N-Free">の特徴</h2>
+      <div class="pipe">
+        <div class="pipe__track" aria-hidden="true"><span class="pipe__fill"></span><span class="pipe__dot"></span></div>
+        <article class="pipe__item rv">
+          <div class="pipe__node"><svg><use href="#i-receipt"/></svg><span class="pipe__idx">01</span></div>
+          <h3>撮るだけで<br>AIが自動読み取り</h3>
+          <p>レシートや領収書をスマホで撮影するだけで、AIが店名・日付・金額などを自動で読み取り。<br>内容は画面で確認・修正してから保存できます。</p>
+        </article>
+        <article class="pipe__item rv">
+          <div class="pipe__node"><svg><use href="#i-tags"/></svg><span class="pipe__idx">02</span></div>
+          <h3>勘定科目も<br>AIが自動仕分け</h3>
+          <p>読み取ったデータをもとに、AIが勘定科目まで自動で仕分け。<br>手入力の手間を抑えながら、日々の記帳を無理なく続けられます。</p>
+        </article>
+        <article class="pipe__item rv">
+          <div class="pipe__node"><svg><use href="#i-docs"/></svg><span class="pipe__idx">03</span></div>
+          <h3>データ提出だけでOK！<br>必要書類は代行作成</h3>
+          <p>利用者は「売上＆経費データ」を送るだけで、必要な書類を全自動で作成。<br>源泉徴収票・領収書・請求書などの整理も代行。</p>
+        </article>
+        <article class="pipe__item rv">
+          <div class="pipe__node is-key"><svg><use href="#i-bell"/></svg><span class="pipe__idx">04</span></div>
+          <h3>確定申告の義務を自動判定<br>やるべき人だけに案内</h3>
+          <p>毎月の収支データをもとに、確定申告が必要か自動判定。<br>「あなたは確定申告が必要です！」と通知が来るから、迷わず行動できる。</p>
+        </article>
+      </div>
+      <div class="cta"><span class="balloon">7日間無料トライアル付き！</span><a href="https://app.n-free.jp/signup" target="_blank" rel="noopener" class="btn btn--lg">申し込む</a></div>
+    </div>
+  </section>
+
+  <!-- FLOW timeline -->
+  <section class="sec" id="sec08">
+    <div class="wrap flowwrap">
+      <h2 class="h2 rv">導入までの流れ</h2>
+      <ol class="tl">
+        <li class="tl__rail" aria-hidden="true"><span></span></li>
+        <li class="tl__item">
+          <div class="tl__mark"><span>STEP</span><b>01</b></div>
+          <div class="tl__body rv">
+            <svg class="ic"><use href="#i-chat"/></svg>
+            <h3>お申し込み</h3>
+            <p>公式ウェブサイトまたはアプリから会計代行サービスに申し込みます。<br>必要な情報（会社名、連絡先、事業内容など）を入力し、簡単なプロフィールを登録します。</p>
+          </div>
+        </li>
+        <li class="tl__item">
+          <div class="tl__mark"><span>STEP</span><b>02</b></div>
+          <div class="tl__body rv">
+            <svg class="ic"><use href="#i-docs"/></svg>
+            <h3>必要書類の提出</h3>
+            <p>登録完了後に必要な書類（法人登記簿、決算書、請求書等）を指定された方法で提出します。<br>これにより、担当者がサービスを開始するために必要な情報を収集します。</p>
+          </div>
+        </li>
+        <li class="tl__item">
+          <div class="tl__mark"><span>STEP</span><b>03</b></div>
+          <div class="tl__body rv">
+            <svg class="ic"><use href="#i-calendar"/></svg>
+            <h3>サービス開始</h3>
+            <p>すべての書類が確認されると、会計代行サービスが開始され、税務・会計業務がスムーズに進行します。<br>お客様は進捗をオンラインで確認し、必要に応じてサポートを受けることができます。</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- NECESSITY -->
+  <section class="sec sec--deep" id="sec04">
+    <div class="wrap">
+      <h2 class="h2 rv">確定申告の<span class="hl">必要性</span>とは？</h2>
+      <ol class="law">
+        <li class="rv"><strong>年間を通じて一定額以上の収入があり、源泉徴収されていない場合、所得税法第120条に基づき、</strong>確定申告によって適切な税金を納める義務があります。</li>
+        <li class="rv">確定申告が必要な理由は、国税通則法第16条に基づき、<strong>所得のある個人が適正に納税し、国の税制度を適切に機能させるためです。</strong></li>
+        <li class="rv">確定申告を行うメリットとして、法的責任を果たすだけでなく、<strong>自身の財政状態や経営成績を正確に把握することができ、</strong>所得税法第120条の2により、過払い分の税金が還付される可能性があります。</li>
+        <li class="rv">働き先が2カ所以上ある場合、特に副業をしている方は税金を払いすぎている可能性があり、<strong>所得税法第121条に基づき確定申告を行うことで、納めすぎた税金が還付されることがあります。</strong></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- RISK escalation -->
+  <section class="sec" id="sec05">
+    <div class="wrap">
+      <h2 class="h2 rv">無申告の<span class="hl">リスク</span>とその影響</h2>
+      <div class="esc">
+        <div class="esc__item rv">
+          <div class="esc__bar" style="--h:28%" aria-hidden="true"></div>
+          <h3>無申告のリスク</h3>
+          <p>無申告のままでは、一時的に税金を支払わずに済むように思えますが、<strong>結果的に本来より多くの税金を支払うリスクがあります。</strong></p>
+        </div>
+        <div class="esc__item rv">
+          <div class="esc__bar" style="--h:58%" aria-hidden="true"></div>
+          <h3>ペナルティと追徴課税</h3>
+          <p>無申告が発覚すると、<strong>無申告加算税や延滞税などのペナルティ</strong>が課され、悪質な場合は<strong>刑事罰の対象</strong>となることもあります。<br>これにより、大きな <em>金銭的損失</em> や <em>信用問題</em> につながる可能性があります。</p>
+        </div>
+        <div class="esc__item rv">
+          <div class="esc__bar" style="--h:90%" aria-hidden="true"></div>
+          <h3>税務調査のリスク</h3>
+          <p>無申告が疑われる場合、<strong>税務調査の対象</strong>になることがあります。<br>特に取引先が経費計上した記録などから、税務署が<strong>反面調査</strong>を行い、無申告が発覚するケースがあります。</p>
+        </div>
+        <div class="esc__item esc__item--ok rv">
+          <div class="esc__bar esc__bar--ok" style="--h:22%" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1"/></svg></div>
+          <h3>早めの申告が重要</h3>
+          <p><em>適切な確定申告</em>を行うことで、余計な税負担や罰則を回避し、<em>経済的なリスクを減らす</em>ことができます。</p>
+        </div>
+      </div>
+      <div class="cta"><span class="balloon">7日間無料トライアル付き！</span><a href="https://app.n-free.jp/signup" target="_blank" rel="noopener" class="btn btn--lg">申し込む</a></div>
+    </div>
+  </section>
+
+  <!-- PREP checklist -->
+  <section class="sec sec--gray" id="sec06">
+    <div class="wrap">
+      <h2 class="h2 rv">確定申告の事前準備とポイント</h2>
+      <div class="prep">
+        <div class="panel">
+          <h3 class="panel__h">事前準備</h3>
+          <ul class="check">
+            <li class="rv"><span class="cb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1"/></svg></span><div><h4>収入・支出の証明書類を整理</h4><p>給与明細や契約書（収入証明）、領収書や請求書（経費証明）、社会保険料・生命保険料・ふるさと納税・医療費控除の証明書を準備。<br>昨年の確定申告をしている場合は、過去の申告書も参考に。</p></div></li>
+            <li class="rv"><span class="cb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1"/></svg></span><div><h4>現金収入の記録</h4><p>現金手渡しで収入を得た場合は、「いつ・誰から・いくら受け取ったか」をメモしておく。</p></div></li>
+            <li class="rv"><span class="cb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1"/></svg></span><div><h4>領収書を紛失した場合の対応策</h4><p>クレジットカードの明細書や購入時のメールなどが代用できる場合がある。<br>インボイスとして認められないケースもあるが、所得税の証明にはなる。<br>どうしても証明がない場合は、日付・金額・目的を明記したメモを残す。</p></div></li>
+            <li class="rv"><span class="cb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1"/></svg></span><div><h4>青色申告で節税を</h4><p>個人事業主は青色申告を検討すると、最大<b class="count" data-to="65">65</b>万円の控除が可能。<br>また、赤字が出た場合、翌3年間の黒字と相殺できるため節税につながる。</p></div></li>
+            <li class="rv"><span class="cb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" pathLength="1"/></svg></span><div><h4>高額なプレゼントには贈与税がかかる可能性</h4><p>年間<b class="count" data-to="110">110</b>万円を超える贈与を受けた場合、贈与税の対象となる可能性があるため注意が必要。</p></div></li>
+          </ul>
+        </div>
+        <div class="prep__side">
+          <h3 class="panel__h panel__h--plain">ポイント</h3>
+          <div class="panel panel--sm rv">
+            <h4>収入として判断される項目</h4>
+            <ul class="dots">
+              <li><strong>現金手渡しの収入</strong>も所得として認識され、所得税の対象となる。</li>
+              <li>夜職の方は雇用契約か業務委託契約かで所得区分が異なり、確定申告または年末調整が必要。</li>
+              <li>接待などで得た現金もタクシー代等の名目に関わらず、所得とみなされ課税対象となる。</li>
+            </ul>
+          </div>
+          <div class="panel panel--sm rv">
+            <h4>経費として認められるポイント</h4>
+            <ul class="dots">
+              <li><strong>経費は事業に直接関連する支出のみ が対象</strong>で、プライベートの支出は認められない。</li>
+              <li>証明書類（領収書・レシート・請求書等）の適切な保管が重要。</li>
+              <li><strong>高額な経費よりも、カフェ代など少額の経費</strong>を積み重ねることが節税につながる。</li>
+            </ul>
+          </div>
+          <div class="note rv">
+            <svg class="note__clock" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="17"/><path class="hand" d="M24 24V13"/><path d="M24 24l7 5"/></svg>
+            <p>仕事の合間に<br>あれこれ準備したり<br>基礎知識覚えたり<br>するのって結構大変...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICE -->
+  <section class="sec" id="sec07">
+    <div class="wrap">
+      <div class="solve solve--top rv">
+        <p class="solve__l1">これらのお困り事や実際の申告までを丸ごと全て</p>
+        <p class="solve__l2"><img src="image/logo-tight.png" alt="N-Free">にお任せください！！</p>
+        <p class="solve__note">※難しい基礎知識も覚える必要はありません。</p>
+      </div>
+      <div class="pricebox">
+        <h2 class="h2 rv">月契約ではじめられる<br><span class="hl">業界最安水準</span>のサービスプラン</h2>
+        <div class="plan rv">
+          <div class="plan__head"><svg><use href="#i-doc-yen"/></svg><p>会計記帳代行プラン</p></div>
+          <p class="plan__price"><span class="yen">¥</span><span class="count num" data-to="1980">1,980</span><span class="per"> / 月<sup>*</sup></span></p>
+          <a href="https://app.n-free.jp/signup" target="_blank" rel="noopener" class="btn btn--lg btn--block">申し込む</a>
+          <p class="plan__note">利用期間自動更新（年間プラン）<br><small>*年間 ¥23,760（税込）</small></p>
+        </div>
+      </div>
+
+      <h3 class="lead-h rv">以下のように面倒な科目仕分け作業も<br class="sp">当社にお任せください！！</h3>
+      <div class="exp">
+        <div class="exp__blk rv">
+          <h2 class="exp__h">経費として認められる可能性がある支出<br>(事業に関連する一般的な支出)</h2>
+          <ul class="sorted"><li><i></i>交際費</li><li><i></i>通信費</li><li><i></i>広告宣伝費</li><li><i></i>外注費</li><li><i></i>旅費交通費</li><li><i></i>会議費</li></ul>
+          <button class="exp__toggle" type="button" aria-expanded="false" aria-controls="t1">詳細はこちら</button>
+          <div class="exp__tbl" id="t1" hidden>
+            <table>
+              <thead><tr><th>項目</th><th>具体例</th></tr></thead>
+              <tbody>
+                <tr><td>交際費</td><td>取引先との接待や贈答</td></tr>
+                <tr><td>会議費</td><td>会議を目的とした支出（1人10,000円以下）</td></tr>
+                <tr><td>旅費交通費</td><td>事業上必要な旅費や交通費</td></tr>
+                <tr><td>外注費</td><td>業務委託費用</td></tr>
+                <tr><td>通信費</td><td>インターネット利用料、郵送費</td></tr>
+                <tr><td>広告宣伝費</td><td>名刺代、チラシ、パンフレット、ホームページ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="exp__blk exp__blk--b rv">
+          <h2 class="exp__h">夜職の方の主な支出<span class="hl"><br class="sp">（数多くの注意事項がございます）</span></h2>
+          <ul class="sorted"><li><i></i>美容整形代</li><li><i></i>通勤費</li><li><i></i>自宅家賃代</li><li><i></i>衣装代</li><li><i></i>税理士費用</li><li><i></i>記帳代行料</li></ul>
+          <button class="exp__toggle" type="button" aria-expanded="false" aria-controls="t2">詳細はこちら</button>
+          <div class="exp__tbl" id="t2" hidden>
+            <table>
+              <thead><tr><th>項目</th><th>具体例</th></tr></thead>
+              <tbody>
+                <tr><td>衣装代</td><td>お店で着る衣装代やドレス代、ヌーブラ、コスプレ、ストール</td></tr>
+                <tr><td>通勤費</td><td>自宅とお店までの交通費として電車代やタクシー代</td></tr>
+                <tr><td>通信費</td><td>スマートフォン本体代、インターネット利用料、電話代</td></tr>
+                <tr><td>小物代</td><td>ハンカチ、ライター、バッグ、名刺入れなど</td></tr>
+                <tr><td>自宅家賃</td><td>賃貸借契約している賃料</td></tr>
+                <tr><td>美容整形代</td><td>美容院でのエステや脱毛、ネイル</td></tr>
+                <tr><td>名刺代</td><td>名刺作成費用</td></tr>
+                <tr><td>書籍や新聞代</td><td>自分磨きに関連した本の購入費やサブスク料</td></tr>
+                <tr><td>交際費</td><td>同伴やアフターなど、お客さんとのご飯代のうち支払った分やお客さんへのプレゼント代</td></tr>
+                <tr><td>税理士費用</td><td>税理士への顧問料や確定申告費用</td></tr>
+                <tr><td>記帳代行料</td><td>領収書や通帳のコピーなどの取引記録の代行料</td></tr>
+                <tr><td>雑費</td><td>ヘアセット代</td></tr>
+                <tr><td>アクセサリー</td><td>かばん、靴、バッグ、ネックレスなどアクセサリー類</td></tr>
+                <tr><td>ジム代</td><td>トレーニングジム代</td></tr>
+                <tr><td>その他</td><td>お仕事に関連する出費</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="sec sec--gray" id="sec09">
+    <div class="wrap">
+      <h2 class="h2 h2--md rv">導入に関するご不明点等、<br class="sp">お気軽にお問い合わせください！</h2>
+      <div class="cards3">
+        <div class="cc rv"><svg class="ic"><use href="#i-calendar"/></svg><h3>無料トライアル</h3><p>従業員50名以下の企業・個人事業主は、ご登録後すぐに製品をお試しいただけます。</p></div>
+        <div class="cc rv"><svg class="ic"><use href="#i-chat"/></svg><h3>相談する</h3><p>貴社のご状況にあった製品や導入スケジュールを担当者がご案内いたします。</p></div>
+        <div class="cc rv"><svg class="ic"><use href="#i-doc-yen"/></svg><h3>見積もり</h3><p>従業員51名以上の企業は、担当者が詳細をお伺いして最適なプランをご提案します。</p></div>
+      </div>
+      <div class="center"><a href="contact.html" class="btn btn--outline btn--lg">お問い合わせ</a></div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap cta cta--final"><span class="balloon">7日間無料トライアル付き！</span><a href="https://app.n-free.jp/signup" target="_blank" rel="noopener" class="btn btn--lg btn--inv">申し込む</a></div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="wrap ft__in">
+    <div class="ft__brand">
+      <img src="image/logo-tight.png" alt="N-Free">
+      <p>面倒な会計業務や確定申告業務を<br>プロにお任せください</p>
+    </div>
+    <div class="ft__col">
+      <h4>サービス</h4>
+      <ul>
+        <li><a href="index.html#sec03">N-Freeの特徴</a></li>
+        <li><a href="index.html#sec08">導入までの流れ</a></li>
+        <li><a href="index.html#sec07">料金プラン</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+      </ul>
+    </div>
+    <div class="ft__col">
+      <h4>法的事項</h4>
+      <ul>
+        <li><a href="tokushoho.html">特定商取引法に基づく表記</a></li>
+        <li><a href="privacy-policy.html">プライバシーポリシー</a></li>
+        <li><a href="cancel-policy.html">キャンセルポリシー</a></li>
+        <li><a href="terms-of-service.html">利用規約</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap ft__bottom"><small>© 2025 N-Free Inc. All rights reserved.</small></div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
