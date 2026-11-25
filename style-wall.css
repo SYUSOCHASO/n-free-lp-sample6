@@ -684,20 +684,20 @@ main { overflow-x: clip; }
   --p-card: #fff; --p-edge: rgba(28, 26, 23, .05); --p-bar: #ebe1cf; --p-accent: #f08300; --p-shadow: rgba(120, 80, 30, .16); --p-paper: #fff; --p-print: #d9cdb8; --p-route: rgba(28, 26, 23, .3); --p-grid: rgba(28, 26, 23, .07); }
 
 /* 背景パターン「カードの壁」：傾いた面に画面の部品のようなカードが並び、段ごとに左右へ流れ続ける（カードは script.js が置く） */
-.v-wall { inset: 0; overflow: hidden; font-size: 10px; animation: q-fade 1.8s ease-out both; -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, .1), rgba(0, 0, 0, .22) 40%, #000 72%); mask-image: linear-gradient(90deg, rgba(0, 0, 0, .1), rgba(0, 0, 0, .22) 40%, #000 72%); }
+.v-wall { inset: 0; overflow: hidden; font-size: 10px; animation: q-fade 1.8s ease-out both; -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, .04), rgba(0, 0, 0, .12) 42%, rgba(0, 0, 0, .7) 78%); mask-image: linear-gradient(90deg, rgba(0, 0, 0, .04), rgba(0, 0, 0, .12) 42%, rgba(0, 0, 0, .7) 78%); }
 .v-tilt { position: absolute; left: -15%; right: -15%; top: 50%; display: grid; gap: 2.2em; transform: translateY(-50%) perspective(1400px) rotateX(24deg) rotateZ(-11deg); }
 .v-row { display: flex; gap: 2.2em; width: max-content; animation: v-flow var(--t) linear infinite; }
 .v-row:nth-child(even) { animation-direction: reverse; }
 .v-card { flex: none; width: 21em; height: 12.4em; padding: 1.8em; display: grid; align-content: start; gap: 1em; background: var(--p-card); border: 1px solid var(--p-edge); border-radius: 8px; box-shadow: 0 1.6em 3em var(--p-shadow); }
 .v-card i { display: block; height: .8em; border-radius: 1em; background: var(--p-bar); }
 .v-card i.s { width: 58%; }
-.v-card i.a { width: 38%; background: var(--p-accent); }
-.v-card b { display: block; width: 3em; height: 3em; border-radius: 50%; background: var(--p-accent); }
+.v-card i.a { width: 38%; background: var(--p-accent); opacity: .75; }
+.v-card b { display: block; width: 3em; height: 3em; border-radius: 50%; background: var(--p-bar); }
 .v-card u { display: flex; align-items: flex-end; gap: .8em; height: 5.6em; }
 .v-card u s { flex: 1; height: var(--v); background: var(--p-bar); border-radius: 3px 3px 0 0; }
-.v-card u s:last-child { background: var(--p-accent); }
+.v-card u s:last-child { background: var(--p-accent); opacity: .75; }
 @keyframes v-flow { to { transform: translateX(-50%); } }
 @media (max-width: 768px) {
-  .v-wall { font-size: 6.4px; -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 58%, #000 82%); mask-image: linear-gradient(180deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 58%, #000 82%); }
+  .v-wall { font-size: 6.4px; -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, .1), rgba(0, 0, 0, .1) 58%, rgba(0, 0, 0, .7) 82%); mask-image: linear-gradient(180deg, rgba(0, 0, 0, .1), rgba(0, 0, 0, .1) 58%, rgba(0, 0, 0, .7) 82%); }
   .v-tilt { left: -40%; right: -40%; }
 }

@@ -300,7 +300,7 @@ $(function(){
     for (var r = 0; r < rows; r++) {
         var cards = '';
         for (var c = 0; c < 9; c++) cards += '<div class="v-card">' + kinds[(c + r * 3) % 4] + '</div>';
-        html += '<div class="v-row" style="--t:' + (46 + (r * 7) % 22) + 's">' + cards + cards + '</div>';
+        html += '<div class="v-row" style="--t:' + (90 + (r * 11) % 36) + 's">' + cards + cards + '</div>';
     }
     host.insertAdjacentHTML('afterbegin', html + '</div></div>');
 })();

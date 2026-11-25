@@ -285,16 +285,20 @@ $(function(){
 })();
 
 /* ------------------------------------------------------------
-   背景パターン「ロール紙」：PC 用とスマホ用で紙の通り道を分けて置く（紙が送られる動きは CSS）
+   背景パターン「紙飛行機」：PC 用とスマホ用で航路を分けて置く。飛行機と軌跡は同じ時間で航路を 1 周する
 ------------------------------------------------------------ */
 (function () {
     var host = document.querySelector('.hero');
     if (!host) return;
-    function tape(cls, box, d) {
-        return '<svg class="hero-bg z-tape ' + cls + '" viewBox="' + box + '" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">'
-            + '<path class="z-shadow" d="' + d + '"/><path class="z-paper" d="' + d + '"/><path class="z-print" d="' + d + '"/><path class="z-total" d="' + d + '"/></svg>';
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function sky(cls, box, d, id, dur, size) {
+        var move = still ? '' : '<animateMotion dur="' + dur + 's" repeatCount="indefinite" rotate="auto"><mpath href="#' + id + '"/></animateMotion>';
+        var trail = still ? '' : '<animate attributeName="stroke-dashoffset" from="150" to="-850" dur="' + dur + 's" repeatCount="indefinite"/>';
+        return '<svg class="hero-bg a-sky ' + cls + '" viewBox="' + box + '" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">'
+            + '<path id="' + id + '" class="a-route" d="' + d + '"/><path class="a-trail" pathLength="1000" d="' + d + '">' + trail + '</path>'
+            + '<g><g transform="scale(' + size + ')"><path class="a-plane" d="M16 0L-30 -17L-20 0L-30 17Z"/><path class="a-fold" d="M16 0L-20 0L-30 17Z"/></g>' + move + '</g></svg>';
     }
     host.insertAdjacentHTML('afterbegin',
-        tape('z-pc', '0 0 1440 820', 'M1540 40C1240 -20 900 60 860 300S1120 640 1300 520S1380 180 1160 150S790 420 750 640S700 880 640 1000')
-        + tape('z-sp', '0 0 390 940', 'M450 30C300 -10 150 60 220 190S430 360 250 470S-30 560 90 700S380 780 440 900'));
+        sky('a-pc', '0 0 1440 820', 'M-80 720C180 560 420 780 640 610S860 140 1100 150S1500 400 1280 520S900 400 1000 230S1300 -20 1540 60', 'a-route-pc', 18, 1.25)
+        + sky('a-sp', '0 0 390 940', 'M-50 840C80 700 320 780 340 610S50 500 110 340S380 280 310 140S140 50 440 -20', 'a-route-sp', 15, .8));
 })();
