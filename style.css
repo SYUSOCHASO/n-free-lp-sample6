@@ -682,6 +682,9 @@ main { overflow-x: clip; }
 /* 案6 の色：アイボリー × オレンジ。背景の動きは pat-*.css（--p-* がその色） */
 .hero { --h-bg: #f7f2e8; --h-text: #1c1a17; --h-accent: #e8730c; --h-line: #1c1a17; --h-chip-bg: #1c1a17; --h-chip-text: #fff; --h-btn-bg: #f08300; --h-btn-text: #fff; --h-tag-bg: #fff; --h-tag-text: #1c1a17; --h-marker: rgba(240, 131, 0, .32);
   --p-card: #fff; --p-edge: rgba(28, 26, 23, .05); --p-bar: #ebe1cf; --p-accent: #f08300; --p-shadow: rgba(120, 80, 30, .16); --p-paper: #fff; --p-print: #d9cdb8; --p-route: rgba(28, 26, 23, .3); --p-grid: rgba(28, 26, 23, .07); }
+/* お悩みセクション以降と下層ページもオレンジ基調にする（design.css / base.css の緑の変数を差し替える） */
+:root { --c-green: #f08300; --c-green-deep: #c75f00; --c-bright: #ffb24d; --c-link: #c75f00; --c-primary-hover: #c75f00; --c-bg-alt: #f7f2e8; }
+.sec-risk .btn-cta { --sheen: rgba(240, 131, 0, .4); }
 
 /* 背景パターン「撮る→記帳される」：小さなレシートがトップ全体から曲線を描いてスマホ画像に吸い込まれ、チェックの付いた整った行になって出てくる（SVG は script.js が置く） */
 .w-flow { left: var(--px, 80%); top: var(--py, 50%); width: 1px; height: 1px; overflow: visible; animation: q-fade 1.6s ease-out both; }
