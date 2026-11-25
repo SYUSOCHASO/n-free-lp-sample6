@@ -629,53 +629,63 @@ main { overflow-x: clip; }
 }
 
 /* ============================================================
-   トップ（ヒーロー）の共通部分：6 案とも、動きは「静かに浮かび上がる」だけに揃える。
+   トップ（ヒーロー）の共通部分：6 案とも、動きは控えめに揃える。背景の動きはスマホでも最初の画面（文字の後ろ）に置く。
    色は各案の hero{n}.css が --h-* で決める。お悩みセクション以降は design.css のまま
 ============================================================ */
 :root { --c-green: #21b384; }
 .hero { background: var(--h-bg); color: var(--h-text); animation: none; }
 .hero .hero-promo::after { height: 1px; background: var(--h-line); animation: q-line 1.4s var(--ease-out) .2s both; }
 .hero .hero-promo-headline strong { color: var(--h-chip-text); background: var(--h-chip-bg); }
-.hero .hero-eyebrow-em { background: linear-gradient(var(--h-line), var(--h-line)) no-repeat left bottom / 100% 2px; animation: none; }
+.hero .hero-eyebrow-em { background: linear-gradient(var(--h-line), var(--h-line)) no-repeat left bottom / 100% 2px; }
 .hero .hero-title { font-size: clamp(40px, 6.6vw, 96px); }
 .hero .hero-title-accent { color: var(--h-accent); }
 .hero .hero-title-accent::after { content: none; }
-.hero .hero-subtitle strong { background: linear-gradient(var(--h-marker), var(--h-marker)) no-repeat left 100% / 100% 26%; animation: none; }
-.hero .btn-hero, .hero .btn-hero:hover { color: var(--h-btn-text); background: var(--h-btn-bg); border-color: var(--h-btn-bg); animation: none; }
+.hero .hero-subtitle strong { background: linear-gradient(var(--h-marker), var(--h-marker)) no-repeat left 100% / 100% 26%; }
+.hero .btn-hero, .hero .btn-hero:hover { color: var(--h-btn-text); background: var(--h-btn-bg); border-color: var(--h-btn-bg); }
 .hero .btn-hero { transition: filter .2s; }
 .hero .btn-hero:hover { filter: brightness(1.12); }
 .hero .btn-hero::after { content: none; }
 .hero .btn-tag, .hero .btn-hero:hover .btn-tag { color: var(--h-tag-text); background: var(--h-tag-bg); animation: none; }
-.hero .btn-hero .btn-label, .hero .btn-arrow { animation: none; }
+.hero .btn-hero .btn-label { animation: none; }
 .hero .hero-meta { perspective: none; }
-.hero .hero-meta li { border-left-color: var(--h-line); animation: none; }
+.hero .hero-meta li { border-left-color: var(--h-line); }
 
-/* 現れ方：上から順に、少し下からふわっと */
-.hero .hero-promo-headline, .hero .hero-promo-sub, .hero .hero-eyebrow, .hero .hero-title-line, .hero .hero-title-line.is-split,
-.hero .hero-subtitle, .hero .hero-cta, .hero .hero-meta { animation: q-up 1s var(--ease-out) both; }
+/* 現れ方：要素ごとに少しずつ違うが、どれも控えめ（跳ねる・走り抜ける・めくれる動きは使わない） */
+.hero .hero-promo-headline { animation: wipe-right 1s var(--ease-out) .15s both; }
+.hero .hero-promo-sub { animation: q-up 1s var(--ease-out) .35s both; }
+.hero .hero-eyebrow { animation: q-up 1s var(--ease-out) .4s both; }
+.hero .hero-eyebrow-em { animation: q-uline 1s var(--ease-out) 1.1s both; }
+.hero .hero-title-line, .hero .hero-title-line.is-split { animation: line-rise 1.2s var(--ease-out) both; }
+.hero .hero-title-line:nth-child(1) { animation-delay: .5s; }
+.hero .hero-title-line:nth-child(2) { animation-delay: .68s; }
 .hero .hero-title-line .ch { animation: none; }
-.hero .hero-promo-headline { animation-delay: .1s; }
-.hero .hero-promo-sub { animation-delay: .2s; }
-.hero .hero-eyebrow { animation-delay: .3s; }
-.hero .hero-title-line:nth-child(1) { animation-delay: .45s; }
-.hero .hero-title-line:nth-child(2) { animation-delay: .6s; }
-.hero .hero-subtitle { animation-delay: .8s; }
-.hero .hero-cta { animation-delay: .95s; }
-.hero .hero-meta { animation-delay: 1.1s; }
-.hero .hero-visual { animation: q-fade 1.6s ease-out .5s both; }
-.hero .hero-app-image { animation: q-float 8s ease-in-out 2s infinite; }
+.hero .hero-subtitle { animation: q-up 1s var(--ease-out) 1s both; }
+.hero .hero-subtitle strong { animation: q-marker 1s var(--ease-out) 1.8s both; }
+.hero .btn-hero { animation: btn-extend 1s var(--ease-out) 1.3s both; }
+.hero .btn-arrow { animation: arrow-nudge 2.6s ease-in-out 3s infinite; }
+.hero .hero-meta li { animation: q-up .9s var(--ease-out) both; }
+.hero .hero-meta li:nth-child(1) { animation-delay: 1.6s; }
+.hero .hero-meta li:nth-child(2) { animation-delay: 1.72s; }
+.hero .hero-meta li:nth-child(3) { animation-delay: 1.84s; }
+.hero .hero-visual { animation: q-phone 1.4s var(--ease-out) .6s both; }
+.hero .hero-app-image { animation: q-float 7s ease-in-out 2s infinite; }
 @keyframes q-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 @keyframes q-fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes q-line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-@keyframes q-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes q-uline { from { background-size: 0% 2px; } to { background-size: 100% 2px; } }
+@keyframes q-marker { from { background-size: 0% 26%; } to { background-size: 100% 26%; } }
+@keyframes q-phone { from { opacity: 0; transform: translateY(48px); } to { opacity: 1; transform: none; } }
+@keyframes q-float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-12px) rotate(-1deg); } }
 .hero::before, .hero::after { pointer-events: none; }
 
-/* 案6：アイボリー × オレンジ。右側に細かな点の地模様があり、気づくかどうかの速さで流れる */
-.hero { --h-bg: #f7f2e8; --h-text: #1c1a17; --h-accent: #e8730c; --h-line: #1c1a17; --h-chip-bg: #1c1a17; --h-chip-text: #fff; --h-btn-bg: #f08300; --h-btn-text: #fff; --h-tag-bg: #fff; --h-tag-text: #1c1a17; --h-marker: rgba(240, 131, 0, .32); }
-.hero::before { content: ""; position: absolute; inset: 0 0 0 30%; background: radial-gradient(circle, rgba(28, 26, 23, .2) 1.4px, transparent 1.8px) 0 0 / 24px 24px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 75%); mask-image: linear-gradient(90deg, transparent, #000 75%); animation: q-fade 2s ease-out both, h6-drift 14s linear infinite; }
-.hero::after { content: ""; position: absolute; right: 4%; top: 50%; width: min(34vw, 460px); aspect-ratio: 1; margin-top: calc(min(34vw, 460px) / -2); border-radius: 50%; background: #fbdcb4; animation: q-fade 1.8s ease-out .3s both; }
+/* 案6：アイボリー × オレンジ。点の地模様が斜めに流れ続け、淡い円がゆっくり呼吸する */
+.hero { --h-bg: #f7f2e8; --h-text: #1c1a17; --h-accent: #e8730c; --h-line: #1c1a17; --h-chip-bg: #1c1a17; --h-chip-text: #fff; --h-btn-bg: #f08300; --h-btn-text: #fff; --h-tag-bg: #fff; --h-tag-text: #1c1a17; --h-marker: rgba(240, 131, 0, .32); --d: min(34vw, 460px); }
+.hero::before { content: ""; position: absolute; inset: 0 0 0 30%; background: radial-gradient(circle, rgba(28, 26, 23, .26) 1.5px, transparent 2px) 0 0 / 24px 24px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 75%); mask-image: linear-gradient(90deg, transparent, #000 75%); animation: q-fade 2s ease-out both, h6-drift 4s linear infinite; }
+.hero::after { content: ""; position: absolute; right: 4%; top: 50%; width: var(--d); aspect-ratio: 1; margin-top: calc(var(--d) / -2); border-radius: 50%; background: #fbdcb4; animation: q-fade 1.8s ease-out .3s both, h6-breathe 5s ease-in-out 2s infinite alternate; }
 @keyframes h6-drift { to { background-position: 24px 24px; } }
+@keyframes h6-breathe { from { transform: scale(1); } to { transform: scale(1.1); } }
 @media (max-width: 768px) {
-  .hero::before { inset: 40% 0 0 0; -webkit-mask-image: linear-gradient(180deg, transparent, #000 70%); mask-image: linear-gradient(180deg, transparent, #000 70%); }
-  .hero::after { right: 50%; top: auto; bottom: 30px; width: 250px; margin: 0 -125px 0 0; }
+  .hero { --d: 280px; }
+  .hero::before { inset: 0 0 45% 20%; -webkit-mask-image: linear-gradient(200deg, #000, transparent 70%); mask-image: linear-gradient(200deg, #000, transparent 70%); }
+  .hero::after { right: -110px; top: -80px; margin-top: 0; }
 }
