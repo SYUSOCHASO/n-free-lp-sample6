@@ -679,12 +679,15 @@ main { overflow-x: clip; }
 .hero::before, .hero::after { pointer-events: none; }
 .hero-bg { position: absolute; pointer-events: none; }
 
-/* 案6 の色：アイボリー × オレンジ。背景の動きは pat-*.css（--p-* がその色） */
-.hero { --h-bg: #f7f2e8; --h-text: #1c1a17; --h-accent: #e8730c; --h-line: #1c1a17; --h-chip-bg: #1c1a17; --h-chip-text: #fff; --h-btn-bg: #f08300; --h-btn-text: #fff; --h-tag-bg: #fff; --h-tag-text: #1c1a17; --h-marker: rgba(240, 131, 0, .32);
-  --p-card: #fff; --p-edge: rgba(28, 26, 23, .05); --p-bar: #ebe1cf; --p-accent: #f08300; --p-shadow: rgba(120, 80, 30, .16); --p-paper: #fff; --p-print: #d9cdb8; --p-route: rgba(28, 26, 23, .3); --p-grid: rgba(28, 26, 23, .07); }
-/* お悩みセクション以降と下層ページもオレンジ基調にする（design.css / base.css の緑の変数を差し替える） */
-:root { --c-green: #f08300; --c-green-deep: #c75f00; --c-bright: #ffb24d; --c-link: #c75f00; --c-primary-hover: #c75f00; --c-bg-alt: #f7f2e8; }
-.sec-risk .btn-cta { --sheen: rgba(240, 131, 0, .4); }
+/* 案5 の色：案6 と同じ作りの緑版。淡い緑 × N-Free の緑。背景の動きは pat-*.css（--p-* がその色）。お悩みセクション以降の色面は、それより淡い緑 */
+.hero { --h-bg: #eaf6f0; --h-text: #121212; --h-accent: #21b384; --h-line: #121212; --h-chip-bg: #121212; --h-chip-text: #fff; --h-btn-bg: #21b384; --h-btn-text: #fff; --h-tag-bg: #fff; --h-tag-text: #121212; --h-marker: rgba(33, 179, 132, .3);
+  --p-card: #fff; --p-edge: rgba(18, 18, 18, .05); --p-bar: #dbe9e2; --p-accent: #21b384; --p-shadow: rgba(20, 90, 65, .15); --p-paper: #fff; --p-print: #cbdcd4; --p-route: rgba(18, 18, 18, .3); --p-grid: rgba(18, 18, 18, .07); }
+:root { --c-green: #8fddbd; --c-bg-alt: #eef7f2; }
+/* 色面を淡くしたぶん、白地の上で文字や線として使う所は元の緑のままにする */
+.step-number { color: #21b384; }
+.voice { border-left-color: #21b384; }
+/* 淡い色面の上では白い数字が読めないので、濃い緑にする */
+.feature::before { color: #0c8f66; }
 
 /* 背景パターン「撮る→記帳される」：小さなレシートがトップ全体から曲線を描いてスマホ画像に吸い込まれ、チェックの付いた整った行になって出てくる（SVG は script.js が置く） */
 .w-flow { left: var(--px, 80%); top: var(--py, 50%); width: 1px; height: 1px; overflow: visible; animation: q-fade 1.6s ease-out both; }
@@ -697,3 +700,24 @@ main { overflow-x: clip; }
 .w-flow .w-halo { fill: var(--p-accent); opacity: .12; }
 .w-flow .w-sp { display: none; }
 @media (max-width: 768px) { .w-flow .w-pc { display: none; } .w-flow .w-sp { display: inline; } }
+
+/* トップのボタン C：角を丸めた大きなボタン。光の輪が広がり続け、表面を光が流れ、矢印が右へ飛び抜けては戻ってくる。
+   「期間限定」はボタンの上の吹き出しにして、上下に弾ませる */
+.hero .hero-cta { margin-top: 88px; }
+.hero .btn-hero, .hero .btn-hero:hover { position: relative; overflow: visible; min-height: 96px; padding: 0 40px 0 48px; gap: 28px; font-size: 26px; letter-spacing: .04em; color: #fff; border: 0; border-radius: 16px;
+  background: linear-gradient(110deg, transparent 42%, rgba(255, 255, 255, .4) 50%, transparent 58%) 130% 0 / 260% 100% no-repeat var(--h-btn-bg);
+  animation: btn-pop .7s cubic-bezier(.34, 1.56, .64, 1) 1.3s both, btn-ring 1.8s ease-out 2.3s infinite, btn-shine 2.6s ease-in-out 2.6s infinite; }
+.hero .btn-tag, .hero .btn-hero:hover .btn-tag { position: absolute; left: 50%; bottom: calc(100% + 14px); translate: -50% 0; align-self: auto; padding: 8px 22px; font-size: 15px; font-weight: 900; letter-spacing: .1em; white-space: nowrap; color: #fff; background: #121212; border-radius: 999px; animation: btn-bob 1s cubic-bezier(.5, 0, .5, 1) 2.3s infinite alternate; }
+.hero .btn-tag::after { content: ""; position: absolute; left: 50%; top: 100%; margin: -1px 0 0 -8px; border: 8px solid transparent; border-top-color: #121212; border-bottom: 0; }
+.hero .btn-arrow { width: 28px; height: 28px; margin-left: 4px; animation: btn-fly 1.2s cubic-bezier(.5, 0, .5, 1) 2.3s infinite; }
+@keyframes btn-pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+@keyframes btn-ring { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--h-btn-bg) 60%, transparent); } 75%, 100% { box-shadow: 0 0 0 26px color-mix(in srgb, var(--h-btn-bg) 0%, transparent); } }
+@keyframes btn-shine { 0% { background-position: 130% 0; } 55%, 100% { background-position: -30% 0; } }
+@keyframes btn-bob { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+@keyframes btn-fly { 0% { transform: translateX(0); opacity: 1; } 45% { transform: translateX(20px); opacity: 0; } 46% { transform: translateX(-20px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
+@media (max-width: 768px) {
+  .hero .hero-cta { margin-top: 76px; }
+  .hero .btn-hero, .hero .btn-hero:hover { width: 100%; min-height: 80px; padding: 0 20px; gap: 14px; font-size: 21px; justify-content: center; }
+  .hero .btn-tag, .hero .btn-hero:hover .btn-tag { font-size: 13px; padding: 7px 18px; }
+  .hero .btn-arrow { width: 24px; height: 24px; margin-left: 0; }
+}
