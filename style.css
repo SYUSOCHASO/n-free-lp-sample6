@@ -683,18 +683,14 @@ main { overflow-x: clip; }
 .hero { --h-bg: #f7f2e8; --h-text: #1c1a17; --h-accent: #e8730c; --h-line: #1c1a17; --h-chip-bg: #1c1a17; --h-chip-text: #fff; --h-btn-bg: #f08300; --h-btn-text: #fff; --h-tag-bg: #fff; --h-tag-text: #1c1a17; --h-marker: rgba(240, 131, 0, .32);
   --p-card: #fff; --p-edge: rgba(28, 26, 23, .05); --p-bar: #ebe1cf; --p-accent: #f08300; --p-shadow: rgba(120, 80, 30, .16); --p-paper: #fff; --p-print: #d9cdb8; --p-route: rgba(28, 26, 23, .3); --p-grid: rgba(28, 26, 23, .07); }
 
-/* 背景パターン「ロール紙」：レシートの長い紙がトップ全体を曲がりながら横切り、印字の線が紙の上を送られ続ける（SVG は script.js が置く） */
-.z-tape { inset: 0; width: 100%; height: 100%; animation: q-fade 1.8s ease-out both; }
-.z-tape path { fill: none; stroke-linecap: butt; }
-.z-tape .z-shadow { stroke: var(--p-shadow); stroke-width: var(--zw); transform: translate(0, 16px); filter: blur(14px); }
-.z-tape .z-paper { stroke: var(--p-paper); stroke-width: var(--zw); }
-.z-tape .z-print { stroke: var(--p-print); stroke-width: calc(var(--zw) * .62); stroke-dasharray: 4 10 4 10 4 10 4 40; animation: z-feed 1.9s linear infinite; }
-.z-tape .z-total { stroke: var(--p-accent); stroke-width: calc(var(--zw) * .62); stroke-dasharray: 6 338; animation: z-feed2 7.6s linear infinite; }
-.z-tape.z-pc { --zw: 96px; }
-.z-tape.z-sp { --zw: 62px; display: none; }
-@keyframes z-feed { to { stroke-dashoffset: -86; } }
-@keyframes z-feed2 { to { stroke-dashoffset: -344; } }
-@media (max-width: 768px) {
-  .z-tape.z-pc { display: none; }
-  .z-tape.z-sp { display: block; -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, .28), rgba(0, 0, 0, .28) 60%, #000 78%); mask-image: linear-gradient(180deg, rgba(0, 0, 0, .28), rgba(0, 0, 0, .28) 60%, #000 78%); }
-}
+/* 背景パターン「撮る→記帳される」：小さなレシートがトップ全体から曲線を描いてスマホ画像に吸い込まれ、チェックの付いた整った行になって出てくる（SVG は script.js が置く） */
+.w-flow { left: var(--px, 80%); top: var(--py, 50%); width: 1px; height: 1px; overflow: visible; animation: q-fade 1.6s ease-out both; }
+.w-flow .w-paper { fill: var(--p-paper); }
+.w-flow .w-shade { fill: var(--p-shadow); }
+.w-flow .w-print { fill: var(--p-print); }
+.w-flow .w-mark { fill: var(--p-accent); }
+.w-flow .w-tick { fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.w-flow .w-pulse { fill: none; stroke: var(--p-accent); stroke-width: 2; }
+.w-flow .w-halo { fill: var(--p-accent); opacity: .12; }
+.w-flow .w-sp { display: none; }
+@media (max-width: 768px) { .w-flow .w-pc { display: none; } .w-flow .w-sp { display: inline; } }
