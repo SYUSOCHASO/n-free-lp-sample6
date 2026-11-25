@@ -285,9 +285,9 @@ $(function(){
 })();
 
 /* ------------------------------------------------------------
-   案6：形を変える色面を 4 つ置く（位置・色・動きはすべて CSS）
+   案6：斜めの面を 4 枚置く（位置・色・動きはすべて CSS）
 ------------------------------------------------------------ */
 (function () {
     var host = document.querySelector('.hero');
-    if (host) host.insertAdjacentHTML('afterbegin', '<div class="hero-bg m-blobs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>');
+    if (host) host.insertAdjacentHTML('afterbegin', '<div class="hero-bg p-planes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>');
 })();
