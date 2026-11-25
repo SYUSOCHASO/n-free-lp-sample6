@@ -679,6 +679,24 @@ main { overflow-x: clip; }
 .hero::before, .hero::after { pointer-events: none; }
 .hero-bg { position: absolute; pointer-events: none; }
 
-/* 案6：アイボリー × オレンジ。印刷の網点のような点がトップ全体に並び、波が通るところだけ点がふくらんでいく（描画は script.js） */
+/* 案6：アイボリー × オレンジ。ベタ塗りの大きな色面が 4 つ、ゆっくり形を変えながら回り続ける（グラデーションや影は使わない） */
 .hero { --h-bg: #f7f2e8; --h-text: #1c1a17; --h-accent: #e8730c; --h-line: #1c1a17; --h-chip-bg: #1c1a17; --h-chip-text: #fff; --h-btn-bg: #f08300; --h-btn-text: #fff; --h-tag-bg: #fff; --h-tag-text: #1c1a17; --h-marker: rgba(240, 131, 0, .32); }
-canvas.hero-bg { inset: 0; width: 100%; height: 100%; animation: q-fade 2s ease-out both; }
+.m-blobs { inset: 0; overflow: hidden; animation: q-fade 1.8s ease-out both; }
+.m-blobs i { position: absolute; left: var(--x); top: var(--y); width: var(--s); aspect-ratio: 1; margin: calc(var(--s) / -2); background: var(--c); animation: m-morph var(--t) ease-in-out var(--dl) infinite alternate, m-turn var(--u) linear infinite; }
+.m-blobs i:nth-child(1) { --x: 79%; --y: 52%; --s: min(60vw, 840px); --c: #fbdcb6; --t: 9s; --u: 60s; --dl: 0s; }
+.m-blobs i:nth-child(2) { --x: 4%; --y: 0%; --s: min(40vw, 560px); --c: rgba(255, 255, 255, .8); --t: 8s; --u: 48s; --dl: -3s; animation-direction: alternate, reverse; }
+.m-blobs i:nth-child(3) { --x: 42%; --y: 104%; --s: min(36vw, 500px); --c: #f8caa0; --t: 7s; --u: 40s; --dl: -5s; }
+.m-blobs i:nth-child(4) { --x: 99%; --y: 6%; --s: min(15vw, 210px); --c: #f08300; --t: 6s; --u: 30s; --dl: -2s; animation-direction: alternate, reverse; }
+@keyframes m-morph {
+  0% { border-radius: 62% 38% 46% 54% / 44% 58% 42% 56%; scale: .94; }
+  33% { border-radius: 40% 60% 62% 38% / 58% 40% 60% 42%; scale: 1.04; }
+  66% { border-radius: 54% 46% 36% 64% / 38% 62% 44% 56%; scale: .98; }
+  100% { border-radius: 46% 54% 58% 42% / 60% 36% 64% 40%; scale: 1.08; }
+}
+@keyframes m-turn { to { rotate: 360deg; } }
+@media (max-width: 768px) {
+  .m-blobs i:nth-child(1) { --x: 70%; --y: 80%; --s: 125vw; }
+  .m-blobs i:nth-child(2) { --x: 6%; --y: 3%; --s: 88vw; }
+  .m-blobs i:nth-child(3) { --x: 104%; --y: 30%; --s: 62vw; }
+  .m-blobs i:nth-child(4) { --x: 98%; --y: 2%; --s: 30vw; }
+}

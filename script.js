@@ -285,48 +285,9 @@ $(function(){
 })();
 
 /* ------------------------------------------------------------
-   案6：網点の波。等間隔の点を敷き、斜めに進む波に合わせて点の大きさを変える。画面外では描画を止める
+   案6：形を変える色面を 4 つ置く（位置・色・動きはすべて CSS）
 ------------------------------------------------------------ */
 (function () {
     var host = document.querySelector('.hero');
-    if (!host) return;
-    var canvas = document.createElement('canvas');
-    canvas.className = 'hero-bg';
-    canvas.setAttribute('aria-hidden', 'true');
-    host.insertBefore(canvas, host.firstChild);
-    var ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var w = 0, h = 0, dpr = 1, running = false;
-    function resize() {
-        dpr = Math.min(window.devicePixelRatio || 1, 2);
-        w = host.clientWidth; h = host.clientHeight;
-        canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
-    }
-    function draw(now) {
-        var mobile = w < 768, gap = mobile ? 20 : 26, max = mobile ? 5 : 7.5, t = now * 0.0011;
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        ctx.clearRect(0, 0, w, h);
-        for (var y = gap / 2, row = 0; y < h; y += gap, row++) {
-            for (var x = (row % 2 ? gap : gap / 2); x < w; x += gap) {
-                // 2 つの波を重ねる：斜めに進む大きな波と、ゆっくり向きの違う波
-                var v = 0.5 + 0.32 * Math.sin((x * 0.9 + y * 0.55) * 0.011 - t) + 0.18 * Math.sin((x * 0.4 - y) * 0.009 + t * 0.6);
-                if (v <= 0.12) continue;
-                // 文字のある側（PC は左、スマホは上）は点を控えめにする
-                var side = mobile ? 0.5 + 0.5 * Math.min(1, y / (h * 0.75)) : 0.4 + 0.6 * Math.min(1, x / (w * 0.75));
-                var r = 0.8 + v * v * max * side;
-                ctx.fillStyle = 'rgba(240,131,0,' + (0.1 + 0.34 * v * side).toFixed(3) + ')';
-                ctx.beginPath(); ctx.arc(x, y, r, 0, 6.2832); ctx.fill();
-            }
-        }
-    }
-    function visible() { var r = host.getBoundingClientRect(); return r.bottom > 0 && r.top < window.innerHeight && !document.hidden; }
-    function loop(now) { if (!visible()) { running = false; return; } draw(now); requestAnimationFrame(loop); }
-    function start() { if (!running && !reduce && visible()) { running = true; requestAnimationFrame(loop); } }
-    resize();
-    if (window.ResizeObserver) new ResizeObserver(function () { resize(); if (reduce) draw(0); }).observe(host);
-    if (reduce) { draw(0); return; }
-    window.addEventListener('scroll', start, { passive: true });
-    document.addEventListener('visibilitychange', start);
-    start();
+    if (host) host.insertAdjacentHTML('afterbegin', '<div class="hero-bg m-blobs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>');
 })();
