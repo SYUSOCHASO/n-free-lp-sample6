@@ -679,17 +679,6 @@ main { overflow-x: clip; }
 .hero::before, .hero::after { pointer-events: none; }
 .hero-bg { position: absolute; pointer-events: none; }
 
-/* 案6：アイボリー × オレンジ。AI チャットを思わせる文字のない吹き出しが、トップ全体にゆっくり浮かぶ。いくつかは「入力中」の点が動く（吹き出しは script.js が置く） */
+/* 案6：アイボリー × オレンジ。印刷の網点のような点がトップ全体に並び、波が通るところだけ点がふくらんでいく（描画は script.js） */
 .hero { --h-bg: #f7f2e8; --h-text: #1c1a17; --h-accent: #e8730c; --h-line: #1c1a17; --h-chip-bg: #1c1a17; --h-chip-text: #fff; --h-btn-bg: #f08300; --h-btn-text: #fff; --h-tag-bg: #fff; --h-tag-text: #1c1a17; --h-marker: rgba(240, 131, 0, .32); }
-.t-talk { inset: 0; font-size: 10px; animation: q-fade 1.8s ease-out both; }
-.t-talk i { position: absolute; left: var(--x); top: var(--y); font-size: var(--fs); display: grid; gap: .7em; min-width: 7em; padding: 1.5em 1.7em; border-radius: 1.8em 1.8em 1.8em .4em; background: #fff; box-shadow: 0 1.2em 2.6em rgba(120, 80, 30, .12); animation: t-float var(--t) ease-in-out var(--dl) infinite alternate; }
-.t-talk i.t-o { background: #f08300; border-radius: 1.8em 1.8em .4em 1.8em; box-shadow: 0 1.2em 2.6em rgba(214, 120, 30, .26); --bar: rgba(255, 255, 255, .85); }
-.t-talk i.t-k { background: #1c1a17; --bar: rgba(255, 255, 255, .8); }
-.t-talk u { display: block; height: .7em; width: var(--w); border-radius: 1em; background: var(--bar, #e7dcc8); }
-.t-talk b { display: flex; gap: .7em; padding: .2em 0; }
-.t-talk b::before, .t-talk b::after, .t-talk b s { content: ""; width: 1em; height: 1em; border-radius: 50%; background: var(--bar, #e3a35a); animation: t-dot 1.4s ease-in-out infinite; }
-.t-talk b s { animation-delay: .18s; }
-.t-talk b::after { animation-delay: .36s; }
-@keyframes t-float { from { translate: 0 0; rotate: var(--r0); } to { translate: var(--dx) var(--dy); rotate: var(--r1); } }
-@keyframes t-dot { 0%, 60%, 100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-.5em); opacity: 1; } }
-@media (max-width: 768px) { .t-talk { font-size: 6px; } .t-talk i:first-child { display: none; } }
+canvas.hero-bg { inset: 0; width: 100%; height: 100%; animation: q-fade 2s ease-out both; }

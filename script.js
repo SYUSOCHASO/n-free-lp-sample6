@@ -285,22 +285,48 @@ $(function(){
 })();
 
 /* ------------------------------------------------------------
-   案6：浮かぶ吹き出し。[左%, 上%, 大きさ, 種類(w=白 o=橙 k=墨), 中身(線の長さem の並び。0 は「入力中」の点), 周期s, 横の揺れem, 縦の揺れem]（動きは CSS）
+   案6：網点の波。等間隔の点を敷き、斜めに進む波に合わせて点の大きさを変える。画面外では描画を止める
 ------------------------------------------------------------ */
 (function () {
     var host = document.querySelector('.hero');
     if (!host) return;
-    var list = [
-        [1, 7, 1, 'o', [9, 6], 6.5, 1.6, 3.2], [66, 4, 1.1, 'w', [12, 8], 7.5, 2, 3], [88, 12, .9, 'o', [0], 6, -1.8, 3.2],
-        [57, 40, .8, 'w', [0], 5.5, 1.4, -2.6], [92, 52, 1, 'k', [8, 5], 7, -1.6, -3], [60, 80, 1.15, 'o', [11, 7], 8, -2, -3.4],
-        [86, 86, .95, 'w', [9, 9, 5], 6.5, 1.8, -3], [38, 90, .85, 'w', [0], 6, 1.4, -2.8], [8, 88, .9, 'w', [8, 5], 7, 1.8, -3],
-        [28, 2, .75, 'w', [7], 5.5, 1.2, 2.6], [-1, 48, .8, 'o', [0], 6, 1.4, 2.6]
-    ];
-    var html = '<div class="hero-bg t-talk" aria-hidden="true">';
-    list.forEach(function (t, i) {
-        var inner = t[4].map(function (w) { return w ? '<u style="--w:' + w + 'em"></u>' : '<b><s></s></b>'; }).join('');
-        html += '<i class="t-' + t[3] + '" style="--x:' + t[0] + '%;--y:' + t[1] + '%;--fs:' + t[2] + 'em;--t:' + t[5] + 's;--dl:-' + (i * 1.2).toFixed(1)
-            + 's;--dx:' + t[6] + 'em;--dy:' + t[7] + 'em;--r0:' + (i % 2 ? 3 : -3) + 'deg;--r1:' + (i % 2 ? -4 : 4) + 'deg">' + inner + '</i>';
-    });
-    host.insertAdjacentHTML('afterbegin', html + '</div>');
+    var canvas = document.createElement('canvas');
+    canvas.className = 'hero-bg';
+    canvas.setAttribute('aria-hidden', 'true');
+    host.insertBefore(canvas, host.firstChild);
+    var ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var w = 0, h = 0, dpr = 1, running = false;
+    function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = host.clientWidth; h = host.clientHeight;
+        canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+    }
+    function draw(now) {
+        var mobile = w < 768, gap = mobile ? 20 : 26, max = mobile ? 5 : 7.5, t = now * 0.0011;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+        for (var y = gap / 2, row = 0; y < h; y += gap, row++) {
+            for (var x = (row % 2 ? gap : gap / 2); x < w; x += gap) {
+                // 2 つの波を重ねる：斜めに進む大きな波と、ゆっくり向きの違う波
+                var v = 0.5 + 0.32 * Math.sin((x * 0.9 + y * 0.55) * 0.011 - t) + 0.18 * Math.sin((x * 0.4 - y) * 0.009 + t * 0.6);
+                if (v <= 0.12) continue;
+                // 文字のある側（PC は左、スマホは上）は点を控えめにする
+                var side = mobile ? 0.5 + 0.5 * Math.min(1, y / (h * 0.75)) : 0.4 + 0.6 * Math.min(1, x / (w * 0.75));
+                var r = 0.8 + v * v * max * side;
+                ctx.fillStyle = 'rgba(240,131,0,' + (0.1 + 0.34 * v * side).toFixed(3) + ')';
+                ctx.beginPath(); ctx.arc(x, y, r, 0, 6.2832); ctx.fill();
+            }
+        }
+    }
+    function visible() { var r = host.getBoundingClientRect(); return r.bottom > 0 && r.top < window.innerHeight && !document.hidden; }
+    function loop(now) { if (!visible()) { running = false; return; } draw(now); requestAnimationFrame(loop); }
+    function start() { if (!running && !reduce && visible()) { running = true; requestAnimationFrame(loop); } }
+    resize();
+    if (window.ResizeObserver) new ResizeObserver(function () { resize(); if (reduce) draw(0); }).observe(host);
+    if (reduce) { draw(0); return; }
+    window.addEventListener('scroll', start, { passive: true });
+    document.addEventListener('visibilitychange', start);
+    start();
 })();
